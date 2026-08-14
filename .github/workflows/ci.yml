@@ -1,0 +1,27 @@
+name: Leptos Dioxus Rust E2E
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  rust-full-stack:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          submodules: recursive
+      - name: Verify durable worker syntax
+        run: node --check public/service-worker.js
+      - name: Verify Rust formatting
+        run: cargo fmt --all -- --check
+      - name: Test Leptos, Dioxus, native worker, and upstream client
+        run: cargo test --all-targets --locked
+      - name: Lint every target
+        run: cargo clippy --all-targets --locked -- -D warnings
+      - name: Build release server
+        run: cargo build --release --locked
+
