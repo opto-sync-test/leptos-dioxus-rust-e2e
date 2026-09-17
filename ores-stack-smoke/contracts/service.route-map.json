@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0.0",
+  "service": "opto-sync-test-ores-stack-smoke",
+  "map": {
+    "GetSyncStatus": "/v1/sync/status"
+  }
+}
