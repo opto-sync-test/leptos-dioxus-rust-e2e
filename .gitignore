@@ -1,3 +1,7 @@
 /target/
 *.log
 
+
+# Local temporary directories and repository-owned worktrees
+tmp/
+temp/
